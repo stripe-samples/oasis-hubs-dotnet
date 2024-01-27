@@ -1,0 +1,48 @@
+@model DashTableViewComponent.BookingItemVModel
+
+<tr class="bg-white">
+   <td class="w-full px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+      <div class="flex">
+         <div class="group inline-flex space-x-2 truncate text-sm">
+            <svg xmlns="http://www.w3.org/2000/svg" class="flex-shrink-0 h-5 w-5 text-gray-500" fill="none"
+                 viewBox="0 0 24 24" stroke="currentColor">
+               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                     d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z">
+               </path>
+            </svg>
+            <p class="text-gray-500 truncate">@Model.GuestBooking.Renter.Email</p>
+         </div>
+      </div>
+   </td>
+   <td class="max-w-xs truncate px-6 py-4 text-left text-sm whitespace-nowrap text-gray-500 uppercase">
+      @Model.GuestBooking.Rental.Title
+   </td>
+   <td class="px-6 py-4 text-right text-sm whitespace-nowrap text-gray-500 uppercase">
+      <span>
+         @Model.GuestBooking.ReservedDateUtc.ToLocalTime().ToString("D")
+      </span>
+   </td>
+   <td class="px-6 py-4 text-right text-sm whitespace-nowrap text-gray-500">@Model.GuestBooking.Hours</td>
+   <td class="t-status hidden px-6 py-4 text-sm whitespace-nowrap text-gray-500 md:block">
+      <span
+         class="t-refunded inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium @GetTierBackground(Model.GuestBooking.Rental.HubTier) text-gray-500 capitalize">
+         @Model.GuestBooking.Rental.HubTier
+      </span>
+   </td>
+   <td class="px-6 py-4 text-right text-sm whitespace-nowrap text-gray-500">
+      <span
+         class="px-6 py-4 text-right text-sm whitespace-nowrap text-gray-500 uppercase">
+         @Model.GuestBooking.Rental.Location
+      </span>
+   </td>
+</tr>
+
+@functions
+{
+   private static string GetTierBackground(RentalTier tier) => tier switch{
+      RentalTier.Basic => "bg-gray-100",
+      RentalTier.Premium => "bg-purple-200",
+      RentalTier.Standard => "bg-yellow-200",
+      _ => "bg-gray-100"
+      };
+}

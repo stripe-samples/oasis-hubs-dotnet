@@ -1,0 +1,27 @@
+﻿@page
+@model ListingsModel
+
+
+<vc:header></vc:header>
+
+<main class="max-w-7xl m-auto px-6">
+    <!-- Filters -->
+    <div class="mt-16  border-b pb-2">
+        <ul class="flex flex-wrap gap-3 ">
+            @foreach(var category in Model.ListingCategories) {
+               <li class="font-semibold"> @category </li>
+           }
+        </ul>
+
+    </div>
+    <!-- Product grid -->
+    <section
+        class="grid px-2 grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-6 items-start flex-wrap justify-between lg:my-8 my-6">
+        @foreach (var rental in @Model.Rentals)
+        {
+           <vc:list-item rental="@rental"></vc:list-item>
+        }
+    </section>
+</main>
+
+<vc:footer></vc:footer>

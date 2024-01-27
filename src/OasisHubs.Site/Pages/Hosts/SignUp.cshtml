@@ -1,0 +1,50 @@
+﻿@page
+@model HostSignUpModel
+
+
+<div class="relative grid grid-cols-1 md:grid-cols-2 h-full">
+    <div class="flex justify-center bg-white my-32 py-12 px-4 sm:px-6 lg:px-8 ">
+
+        <div id="signup" class="">
+            <a href="/" class="absolute top-0 left-0 p-6"><img class="h-8 w-auto" src="/images/logo.png" alt=""></a>
+            <div class="max-w-md w-full space-y-8">
+                <div>
+                    <h2 class=" text-center text-3xl font-extrabold text-gray-900">Become a host!</h2>
+                    <h3 class="mt-2 text-center text-2xl font-bold text-gray-900">
+                        Sign up for an account
+                    </h3>
+                </div>
+                <form class="mt-8 space-y-4 form-with-spinner" method="POST">
+                    <div>
+                        <button type="submit" id="submitButton"
+                            class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-accent-color hover:bg-brand-color focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-color">
+                            <div class="grid grid-cols-3 items-center justify-between w-full">
+                                <div class=" flex items-center pl-3">
+                                    <!-- Heroicon name: solid/lock-closed -->
+                                    <svg class="h-5 w-5 text-brand-color group-hover:text-accent-color"
+                                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
+                                        aria-hidden="true">
+                                        <path fill-rule="evenodd"
+                                            d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
+                                            clip-rule="evenodd"></path>
+                                    </svg>
+                                </div>
+                                <div> Become a Host</div>
+                                <div class="flex justify-end items-center hidden" id="spinner">
+                                    <div
+                                        class=" animate-spin rounded-full h-4 w-4 mr-2 border-t-2 border-b-2 border-white">
+                                    </div>
+                                </div>
+                            </div>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Image -->
+    <div style="background-image: url(https://images.unsplash.com/photo-1525113990976-399835c43838?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1064&q=80);"
+        class="hidden md:block relative bg-no-repeat bg-cover lg:bg-center p-6 bg-top-right">
+    </div>
+</div>

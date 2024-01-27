@@ -1,0 +1,21 @@
+@page
+@model Pricing
+
+<vc:header></vc:header>
+
+<main class="max-w-7xl m-auto px-6">
+   <div class="w-full mx-auto bg-white px-5 py-10 text-gray-600">
+      <div class="text-center w-3/4 mx-auto">
+         <h1 class="text-5xl md:text-6xl mb-5">Subscription Plans</h1>
+         <h3 class="font-medium text-xl text-gray-500 mb-10">Get started with one of tiered plans to get access to a curated list of our unique workspace options provided by our Oasis Hub Hosts. </h3>
+      </div>
+      <div class="max-w-full mx-auto md:flex">
+         @foreach (var tier in Model.HubTierListings)
+         {
+            <vc:tier-pricing-item tier-product="@tier"></vc:tier-pricing-item>
+         }
+      </div>
+   </div>
+</main>
+
+<vc:footer></vc:footer>

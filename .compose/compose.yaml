@@ -1,0 +1,62 @@
+name: oasishubs
+
+services:
+
+  mssql:
+    container_name: mssqlserver
+    hostname: mssqlserver
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    ports:
+      - 1433:1433
+    volumes:
+      - ./tmp/mssql/data:/var/opt/mssql/data
+      - ./tmp/mssql/log:/var/opt/mssql/log
+      - ./tmp/mssql/secrets:/var/opt/mssql/secrets
+    restart: unless-stopped
+    environment:
+      - ACCEPT_EULA=Y
+      - MSSQL_SA_PASSWORD=Dem0P@Ssw0rd!
+
+  rabbitmq:
+    image: "rabbitmq:3.12.4-management"
+    container_name: "rabbitmq-server"
+    hostname: "rabbitmq-server"
+    restart: unless-stopped
+    environment:
+      - RABBITMQ_DEFAULT_USER=demo
+      - RABBITMQ_DEFAULT_PASS=demo
+      - RABBITMQ_ERLANG_COOKIE=demo_cookie_1234
+      - RABBITMQ_DEFAULT_VHOST=oasis
+    volumes:
+      - ./rabbitmq_enabled_plugins:/etc/rabbitmq/enabled_plugins
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+
+  redis:
+    image: "redis/redis-stack:latest"
+    container_name: "redis-service"
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+      - "8001:8001"
+    volumes:
+      - ./redis.conf:/redis-stack.conf
+      - ./tmp/redis/data/:/data
+
+  seq:
+    container_name: "seq-service"
+    image: datalust/seq:2023.4
+    restart: unless-stopped
+    environment:
+      - ACCEPT_EULA=Y
+    volumes:
+      - ./tmp/seq/data:/data
+    ports:
+      - "8191:80"
+      - "5341:5341"
+
+networks:
+  default:
+    name: oasishubs
+    driver: bridge

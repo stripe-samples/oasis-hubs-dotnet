@@ -1,0 +1,79 @@
+﻿@page
+@model SignUpModel
+
+<vc:header></vc:header>
+
+<main class="flex justify-center bg-white my-32 py-12 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-md w-full space-y-8">
+        <div>
+            <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
+                Sign up for an account
+            </h2>
+        </div>
+        <form class="mt-8 space-y-4 form-with-spinner" method="POST">
+
+            @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+            {
+                <div class="flex p-2 items-center border border-red-200 bg-red-100 rounded-md mb-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-red-400 mx-1" fill="none"
+                        viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <div class="text-sm text-red-400">@Model.ErrorMessage </div>
+                </div>
+            }
+            <div asp-validation-summary="ModelOnly"
+                class="flex p-2 items-center border border-red-200 bg-red-100 rounded-md mb-4"></div>
+
+            <div class="rounded-md shadow-sm -space-y-px">
+                <div>
+                    <label asp-for="Name" class="sr-only">Name</label>
+                    <input name="name" placeholder="Name" type="text" required
+                        class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-accent-color focus:border-accent-color focus:z-10 sm:text-sm"
+                        asp-for="Name">
+                    <span asp-validation-for="Name" class=""></span>
+                </div>
+
+                <div>
+                    <label asp-for="Email" class="sr-only">Email address</label>
+                    <input name="email" placeholder="Email address" required
+                        class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-accent-color focus:border-accent-color focus:z-10 sm:text-sm"
+                        asp-for="Email">
+                    <span asp-validation-for="Email" class=""></span>
+                </div>
+                <div>
+                    <label asp-for="Password" class="sr-only">Password</label>
+                    <input name="password" placeholder="Password" required
+                        class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-accent-color focus:border-accent-color focus:z-10 sm:text-sm"
+                        asp-for="Password">
+                    <span asp-validation-for="Password" class=""></span>
+                </div>
+            </div>
+
+            <div>
+                <button type="submit" id="submitButton"
+                    class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-accent-color hover:bg-brand-color focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-color">
+                    <div class="grid grid-cols-3 items-center justify-between w-full">
+                        <div class=" flex items-center pl-3">
+                            <!-- Heroicon name: solid/lock-closed -->
+                            <svg class="h-5 w-5 text-brand-color group-hover:text-accent-color"
+                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
+                                aria-hidden="true">
+                                <path fill-rule="evenodd"
+                                    d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
+                                    clip-rule="evenodd"></path>
+                            </svg>
+                        </div>
+                        <div> Create account</div>
+                        <div class="flex justify-end items-center hidden" id="spinner">
+                            <div class="animate-spin rounded-full h-4 w-4 mr-2 border-t-2 border-b-2 border-white">
+                            </div>
+                        </div>
+                    </div>
+                </button>
+            </div>
+        </form>
+    </div>
+</main>
+<vc:footer></vc:footer>

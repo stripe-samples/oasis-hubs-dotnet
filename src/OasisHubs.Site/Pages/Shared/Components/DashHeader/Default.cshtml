@@ -1,0 +1,67 @@
+@model DashHeaderViewComponent.DashHeaderModel
+
+<div class="bg-white shadow">
+    <div class="px-4 sm:px-6  lg:mx-auto lg:px-8">
+        <div class="py-6 px-16 md:flex md:items-center md:justify-between">
+            <div class="flex-1 min-w-0">
+                <div class="flex items-center">
+                    <div>
+                        <div class="flex items-center">
+                            <h1 class="ml-3 text-2xl font-bold leading-7 text-gray-900 sm:leading-9 sm:truncate">Account
+                                Dashboard</h1>
+                        </div>
+                        <dl class="mt-6 flex flex-col sm:ml-3 sm:mt-1 sm:flex-row sm:flex-wrap">
+                            <dt class="sr-only">Company</dt>
+                            <dd class="flex items-center text-sm text-gray-500 font-medium sm:mr-6">
+                                <svg xmlns="http://www.w3.org/2000/svg"
+                                    class="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207">
+                                    </path>
+                                </svg>
+                                Email: @(Model.OasisUser?.Email ?? "NO EMAIL")
+                            </dd>
+                            <dt class="sr-only">Account status</dt>
+                            <dd>
+                                <div
+                                    class="mt-3 flex items-center text-sm text-gray-500 font-medium sm:mr-6 sm:mt-0 capitalize">
+                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                        class="flex-shrink-0 mr-1.5 h-5 w-5 text-green-400" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                    </svg>
+                                    Verified account
+                                </div>
+                            </dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+           <div class="mt-6 flex space-x-3 md:mt-0 md:ml-4 ">
+               <form action="/actions/express-dashboard-login" method="POST" class="form-with-spinner m-0">
+                                  <button type="submit"
+                                      class="relative inline-flex items-center px-10 py-2 shadow-sm text-sm font-medium rounded-md border border-gray-300 text-white bg-gray-600 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 hover:opacity-90"
+                                      style="background-color: rgb(0, 0, 0); color: rgb(249, 250, 251);">
+                                      <span>Stripe Dashboard</span>
+                                      <span id="spinner"
+                                          class="hidden spinner absolute right-0 animate-spin rounded-full h-5 w-5 mx-3 border-b-2 border-light-red"></span>
+                                  </button>
+                              </form>
+              @* <button type="button" *@
+              @*     class="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">Edit *@
+              @*     Payout Account</button> *@
+              @* <form action="/payout-funds" method="POST" class="form-with-spinner m-0"> *@
+              @*     <button type="submit" *@
+              @*         class="relative inline-flex items-center px-10 py-2 shadow-sm text-sm font-medium rounded-md border border-gray-300 text-white bg-gray-600 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 hover:opacity-90" *@
+              @*         style="background-color: rgb(0, 0, 0); color: rgb(249, 250, 251);"> *@
+              @*         <span>Payout</span> *@
+              @*         <span id="spinner" *@
+              @*             class="hidden spinner absolute right-0 animate-spin rounded-full h-5 w-5 mx-3 border-b-2 border-light-red"></span> *@
+              @*     </button>
+                </form> *@
+           </div>
+        </div>
+    </div>
+</div>

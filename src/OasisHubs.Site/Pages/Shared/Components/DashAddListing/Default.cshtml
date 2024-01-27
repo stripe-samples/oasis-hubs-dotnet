@@ -1,0 +1,125 @@
+@model DashAddListingViewComponent.DashAddListingModel
+
+<div class="flex fixed z-60 inset-0 overflow-auto bg-black bg-opacity-50" style="z-index:999">
+    <div class="relative p-4 bg-white w-full max-w-md m-auto rounded-xl flex-col flex">
+        <div class="p-2  flex justify-end">
+            <svg onclick="closeModal()" xmlns="http://www.w3.org/2000/svg"
+                class="h-6 w-6 rounded-full hover:bg-gray-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+        </div>
+        <h1 class="font-bold text-lg m-auto pt-2 ">Create a listing</h1>
+        <form asp-page="/Dashboard/Listings" asp-page-handler="AddListing" method="POST">
+            <div>
+                <div class="mt-6 mb-6">
+                    <label class="mb-1 block text-sm font-medium text-gray-700">Listing Name</label>
+                    <input
+                        class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-gray-700 focus:border-gray-700 sm:text-sm"
+                        id="name" name="name" type="text" placeholder="Modern Apartment" required />
+                </div>
+                <div class="mt-6 mb-6">
+                    <label class="mb-1 block text-sm font-medium text-gray-700">Description</label>
+                    <input
+                        class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-gray-700 focus:border-gray-700 sm:text-sm"
+                        id="description" name="description" type="text"
+                        placeholder="Beautiful 2 Bed 2 Bath cottage.." required />
+                </div>
+
+                <div class="mt-6 mb-6">
+                    <div class="grid grid-cols-12 gap-x-4">
+                        <div class="col-span-6">
+                            <label class="mb-1 block text-sm font-medium text-gray-700">Capacity</label>
+                            <input
+                                class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-gray-700 focus:border-gray-700 sm:text-sm"
+                                id="capacity" name="capacity" type="number" placeholder="2" required/>
+                        </div>
+
+                        <div class="col-span-6">
+                            <label class="mb-1 block text-sm font-medium text-gray-700">Location</label>
+                            <input
+                                class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-gray-700 focus:border-gray-700 sm:text-sm"
+                                id="location" name="location" type="text" placeholder="St. John's, Antigua" required />
+                        </div>
+                    </div>
+
+                </div>
+                <div class="mt-6 mb-6">
+                    <div class="grid grid-cols-12 gap-x-4">
+                        <div class="col-span-6">
+                            <label class="mb-1 block text-sm font-medium text-gray-700">Type</label>
+                            <select id="type" name="type"
+                                class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-gray-700 focus:border-gray-700 sm:text-sm">
+                                <option value="EntireSpace" selected>Entire Home</option>
+                                <option value="Room">Shared Room</option>
+                                <option value="Desk">Desk</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                        <div class="col-span-6">
+                            <label class="mb-1 block text-sm font-medium text-gray-700">Tier</label>
+                               <select id="tier" name="tier"
+                                   class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-gray-700 focus:border-gray-700 sm:text-sm">
+                                   <option value="Basic">Basic</option>
+                                   <option value="Standard">Standard</option>
+                                   <option value="Premium">Premium</option>
+                               </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-6 mb-2">
+                    <label class="mb-1 block text-sm font-medium text-gray-700">Image URL</label>
+                    <input readonly
+                        class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-gray-700 focus:border-gray-700 sm:text-sm"
+                        id="image" name="image" type="text" placeholder="https://example.com/image.jpg" required />
+                </div>
+
+                <div class="flex p-3 bg-gray-100 mt-2 mb-2 rounded-md">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                    <div class="text-sm text-gray-700">For this demo you can insert a URL to an image or select a stock
+                        photo below if you don't have one.</div>
+                </div>
+                <div class="grid grid-cols-3 gap-2 p-2 border mb-6 rounded-md" id="image-select">
+                    <div class="border overflow-hidden hover:border-4 hover:border-gray-600">
+                        <img alt="" class="object-cover w-full h-20"
+                            src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2340&q=80" />
+                    </div>
+                    <div class="border overflow-hidden hover:border-4 hover:border-gray-600">
+                        <img alt="" class="object-cover w-full h-20"
+                            src="https://images.unsplash.com/photo-1502672023488-70e25813eb80?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1964&q=80" />
+                    </div>
+                    <div class="border overflow-hidden hover:border-4 hover:border-gray-600">
+                        <img alt="" class="object-cover w-full h-20"
+                            src="https://images.unsplash.com/photo-1534595038511-9f219fe0c979?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2340&q=80" />
+                    </div>
+                    <div class="border overflow-hidden hover:border-4 hover:border-gray-600"><img alt=""
+                            class="object-cover w-full h-20"
+                            src="https://images.unsplash.com/photo-1612320648993-61c1cd604b71?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2344&q=80" />
+                    </div>
+                    <div class="border overflow-hidden hover:border-4 hover:border-gray-600">
+                        <img alt="" class="object-cover w-full h-20"
+                            src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2340&q=80" />
+                    </div>
+                    <div class="border overflow-hidden hover:border-4 hover:border-gray-600">
+                        <img alt="" class="object-cover w-full h-20"
+                            src="https://images.unsplash.com/photo-1554995207-c18c203602cb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2340&q=80" />
+                    </div>
+                </div>
+                <div class="flex">
+                    <button onclick="closeModal()"
+                        class="p-2 bg-gray-200 rounded-md flex-1 mr-2 text-center font-extrabold text-gray-600 cursor-pointer hover:opacity-90">Close</button>
+                    <button id="payment-button" type="submit"
+                        class="p-2 bg-gray-500 rounded-md border border-gray-200 flex-1 ml-2 text-white text-center font-extrabold hover:opacity-80 shadow"
+                        style="background-color: rgb(0, 0, 0); color: rgb(249, 250, 251);">
+                        Create
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+

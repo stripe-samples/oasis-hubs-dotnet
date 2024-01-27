@@ -1,0 +1,68 @@
+@page "{handler?}"
+@model Listings
+
+<div class="h-screen flex overflow-hidden bg-gray-100">
+   <vc:dash-nav></vc:dash-nav>
+
+   <div class="flex-1 overflow-auto focus:outline-none">
+      <main class="flex-1 relative pb-8 z-0 overflow-y-auto">
+         <vc:dash-header></vc:dash-header>
+
+         <div>
+         </div>
+         <section class="pr-8 grid grid-cols-12">
+            <div class="col-span-12 py-16 pl-8">
+               <!-- Listings -->
+               <div class=" px-20 pb-6 text-left flex justify-between">
+                  <h3 class="font-semibold text-xl">View your listings</h3>
+                     <button type="button" id="submitButton" onclick="openModal()" class="block group relative flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-purple-600 hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-color">
+                        <div class="grid grid-cols-3 items-center justify-between w-full">
+                           <div class=" flex items-center pl-3">
+                              <!-- Heroicon name: solid/lock-closed -->
+                              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                 <path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd"/>
+                              </svg>
+                           </div>
+                           <div> Add Listing</div>
+                           <div class="flex justify-end items-center hidden" id="spinner">
+                              <div class="animate-spin rounded-full h-4 w-4 mr-2 border-t-2 border-b-2 border-white"></div>
+                           </div>
+                        </div>
+                     </button>
+               </div>
+               <div class="px-20 pb-20">
+                  <div id="listings" class="mt-2 grid grid-cols-1 gap-5 sm:grid-cols-3 lg:grid-cols-4">
+
+                     @foreach (var rental in Model.Rentals)
+                     {
+                        <vc:dash-listing rental="@rental"></vc:dash-listing>
+                     }
+                  </div>
+               </div>
+            </div>
+         </section>
+      </main>
+   </div>
+</div>
+
+
+<div id='modal' class="hidden">
+   <vc:dash-add-listing></vc:dash-add-listing>
+</div>
+<script>
+
+    let modal = document.querySelector('#modal');
+    let imageSelection = document.querySelector('#image-select');
+
+    const openModal = () => {
+        modal.classList.remove('hidden');
+    }
+
+    const addPhoto = (e) => {
+        document.querySelector('#image').value = e.target.currentSrc;
+    }
+    imageSelection.addEventListener("click", addPhoto);
+    const closeModal = () => {
+        modal.classList.add('hidden');
+    }
+</script>
