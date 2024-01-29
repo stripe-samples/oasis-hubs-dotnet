@@ -63,7 +63,7 @@ Load test data with the `dotnet run data seed` command. This will populate the d
 as well as the Stripe account with demo data.
 
 **Step 4**: <br />
-Run the application using the `dotnet run serve` command
+Run the application using the `dotnet run serve` command from the [OasisHubs.Site](src/OasisHubs.Site) directory.
 
 **Step 5**: <br />
 In a new terminal window, run the following command to forward Stripe events to the application
