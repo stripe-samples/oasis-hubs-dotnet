@@ -29,13 +29,15 @@ Connect Express accounts.
 ## [Container Dependencies](.compose/compose.yaml)
 
 * [MS SQl Server](https://github.com/microsoft/mssql-docker/tree/master) - Relational storage for
-  users, hubs, and bookings
+  user credentials, hubs, and bookings
 * [Rabbitmq](https://github.com/docker-library/rabbitmq) - Message broker for handling webhook
   events
 * [Redis](https://redis.io/docs/install/install-stack/docker/) - Distributed cache
 
 ## Running the demo
-***This sample was meant to be run in TEST MODE!***
+
+[!CAUTION]
+> This sample is meant to be run in TEST MODE in your Stripe account!
 
 **Step 0**: <br /> 
 Before running the demo, make sure you sign up for a Stripe
@@ -43,7 +45,7 @@ account, [activate it](https://dashboard.stripe.com/account/onboarding),
 and go through the [Connect setup](https://dashboard.stripe.com/connect/tasklist) in the Stripe
 Dashboard.
 
-You will also need to active the [Customer Portal](https://dashboard.stripe.com/settings/billing/portal).
+You will also need to activate the test link for the [Customer Portal](https://dashboard.stripe.com/settings/billing/portal).
 
 
 **Step 1**: <br />
@@ -57,23 +59,29 @@ Start up the container dependencies using the [compose.yaml](.compose/compose.ya
 file.
 
 **Step 3**: <br />
-Run the application using the `dotnet run serve` command
+Load test data with the `dotnet run data seed` command. This will populate the database tables
+as well as the Stripe account with demo data.
 
 **Step 4**: <br />
-Forward Stripe event to the local server instance
+Run the application using the `dotnet run serve` command
+
+**Step 5**: <br />
+In a new terminal window, run the following command to forward Stripe events to the application
+running locally.
 ```shell
 stripe listen --forward-to http://localhost:5000/api/webhooks/stripe/platform --forward-connect-to  http://localhost:5000/api/webhooks/stripe/connect
 ```
 
-**Step 5**: <br />
-Navigate to http://localhost:5000 in your browser.git 
+**Step 6**: <br />
+Navigate to http://localhost:5000 in your browser. 
 
 ## Scenarios
-### Connect Onboarding
+### Connect Onboarding for hosts
 * Sign in with a one of the **host** accounts listed below
 * Navigate to the "Become a Host page"
 * Complete the Stripe hosted onboarding
-    *  The test values in the [Testing Stripe Connect](https://stripe.com/docs/connect/testing) are useful
+  * The test values in the [Testing Stripe Connect](https://stripe.com/docs/connect/testing) are useful
+  * This may take a few minutes to process in the background
 
 ### Start a subscription
 * Sign in with a one of the **customer** accounts listed below
@@ -96,7 +104,7 @@ Navigate to http://localhost:5000 in your browser.git
 Run container dependencies under the oasishubs project name
 
 ```shell
-docker compose -f .compose/compose.yaml -p oasishubs up 
+docker compose -f .compose/compose.yaml up 
 ```
 
 Provision the database and seed demo customers in Stripe
@@ -105,7 +113,7 @@ Provision the database and seed demo customers in Stripe
 dotnet run data seed
 ```
 
-Drop the demo database. <mark>This does not purge records in the associated Stripe account </mark>
+Drop the demo database. **This does not purge records in the associated Stripe account**
 
 ```shell
 dotnet run data drop
