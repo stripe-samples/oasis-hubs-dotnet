@@ -1,0 +1,11 @@
+{
+  "name": "oasis-hubs-dotnet",
+  "configureDotEnv": true,
+  "integrations": [
+    {
+      "name": "main",
+      "clients": ["html"],
+      "servers": ["dotnet"]
+    }
+  ]
+}
