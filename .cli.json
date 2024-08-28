@@ -4,8 +4,6 @@
   "integrations": [
     {
       "name": "main",
-      "clients": ["html"],
-      "servers": ["dotnet"]
     }
   ]
 }
