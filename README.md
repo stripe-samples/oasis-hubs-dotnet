@@ -42,7 +42,7 @@ Connect Express accounts.
 **Step 0**: <br /> 
 Before running the demo, make sure you sign up for a Stripe
 account, [activate it](https://dashboard.stripe.com/account/onboarding),
-and go through the [Connect setup](https://dashboard.stripe.com/connect/tasklist) in the Stripe
+and go through the [Connect setup](https://dashboard.stripe.com/connect/set-up) in the Stripe
 Dashboard.
 
 You will also need to activate the test link for the [Customer Portal](https://dashboard.stripe.com/settings/billing/portal).
