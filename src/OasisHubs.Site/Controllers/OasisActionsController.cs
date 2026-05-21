@@ -20,6 +20,8 @@ public class OasisActionsController : Controller {
       this._stripeClient = stripeClient;
       this._linkGenerator = linkGenerator;
       this._logger = logger;
+      StripeConfiguration.ApiKey = "sk_test_51OxMDTJvQXInyLdLoRLger2XLzgGF0slr2F96gyDvtvv9DEe6bjpf8dklgiQHscKVA9kh0MAcKGsfpDkBwmKOO8j00CCntzZnz";
+      StripeConfiguration.ApiVersion = "2025-01-27.acacia";
    }
 
    [Authorize]

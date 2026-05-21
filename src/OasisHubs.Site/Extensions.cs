@@ -90,6 +90,7 @@ internal static class Extensions {
    public static IServiceCollection AddStripe(this IServiceCollection services,
       IConfiguration config) {
       StripeConfiguration.ApiKey = config.GetValue<string>("SecretKey");
+      StripeConfiguration.ApiVersion = "2025-01-27.acacia";
 
       var appInfo = new AppInfo { Name = "Oasis Hubs", Version = "0.1.0" };
       StripeConfiguration.AppInfo = appInfo;

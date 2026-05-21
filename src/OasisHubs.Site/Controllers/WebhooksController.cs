@@ -19,6 +19,8 @@ public class WebhooksController : ControllerBase {
       this._stripeConfiguration =
          configuration.GetRequiredSection("Stripe");
       this._logger = logger;
+      StripeConfiguration.ApiKey = "sk_test_51OxMDTJvQXInyLdLoRLger2XLzgGF0slr2F96gyDvtvv9DEe6bjpf8dklgiQHscKVA9kh0MAcKGsfpDkBwmKOO8j00CCntzZnz";
+      StripeConfiguration.ApiVersion = "2025-01-27.acacia";
    }
 
    [HttpPost("stripe/platform")]
